@@ -10,7 +10,7 @@ npm install xml-utils
 
 ## get attribute
 ```javascript
-const getAttribute = require('xml-utils/get-attribute');
+const getAttribute = require('xml-utils/src/get-attribute');
 const xml = `<MDI key="INTERLEAVE">PIXEL</MDI>`;
 const key = getAttribute(xml, 'key');
 console.log(key);
@@ -19,7 +19,7 @@ console.log(key);
 
 ## find one tag by name
 ```javascript
-const findTagByName = require('xml-utils/find-tag-by-name');
+const findTagByName = require('xml-utils/src/find-tag-by-name');
 
 const xml = `<Metadata domain="IMAGE_STRUCTURE"><MDI key="INTERLEAVE">PIXEL</MDI></Metadata>`
 const tag = findTagByName(xml, 'MDI');
@@ -34,7 +34,7 @@ will output:
 ```
 ## find multiple tags with the same name
 ```javascript
-const findTagsByName = require('xml-utils/find-tags-by-name');
+const findTagsByName = require('xml-utils/src/find-tags-by-name');
 const xml = `
     <Metadata>
       <MDI key="SourceBandIndex">1</MDI>
@@ -49,7 +49,7 @@ const tags = findTagsByName(xml, 'MDI');
 ```
 ## find one tag by path
 ```javascript
-const findTagByPath = require('xml-utils/find-tag-by-path');
+const findTagByPath = require('xml-utils/src/find-tag-by-path');
 const xml = `
        <gmd:referenceSystemIdentifier>
          <gmd:RS_Identifier>
@@ -71,7 +71,7 @@ const tag = findTagByPath(xml, ['gmd:RS_Identifier', 'gmd:code', 'gco:CharacterS
 ## find multiple tags by path
 To get an array of tags that follow a path:
 ```javascript
-const findTagsByPath = require('xml-utils/find-tags-by-path');
+const findTagsByPath = require('xml-utils/src/find-tags-by-path');
 const tags = findTagByPath(xml, ['Metadata', 'MDI']);
 // will output an array of tags
 ```
