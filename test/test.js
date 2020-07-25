@@ -68,4 +68,10 @@ describe('getAttribute', function() {
     const key = getAttribute(mdi, 'key', { debug: false });
     expect(key).to.equal('SourceBandIndex');
   });
+  it("should get raster width from a .mrf file", function() {
+    const rasterSize = '<Size x="6638" y="7587" c="4" />';
+    expect(getAttribute(rasterSize, 'x')).to.equal("6638");
+    expect(getAttribute(rasterSize, 'y')).to.equal("7587");
+    expect(getAttribute(rasterSize, 'c')).to.equal("4");
+  });
 });

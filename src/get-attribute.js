@@ -4,11 +4,12 @@ function getAttribute(tag, attributeName, options) {
 
   const xml = typeof tag === "object" ? tag.outer : tag;
 
-  const pattern = `${attributeName}\\="\(.*\)"`;
+  const pattern = `${attributeName}\\="\([^"]*\)"`;
   if (debug) console.log("pattern:", pattern);
 
   const re = new RegExp(pattern);
   const match = re.exec(xml);
+  if (debug) console.log("match:", match);
   if (match) return match[1];
 }
 
