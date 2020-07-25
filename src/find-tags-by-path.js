@@ -7,10 +7,12 @@ function findTagsByPath(xml, path, options) {
   if (debug) console.log("first tags are:", tags);
   for (let pathIndex = 0; pathIndex < path.length; pathIndex++) {
     const tagName = path[pathIndex];
+    if (debug) console.log("tagName:", tagName);
     let allSubTags = [];
     for (let tagIndex = 0; tagIndex < tags.length; tagIndex++) {
       const tag = tags[tagIndex];
       const subTags = findTagsByName(tag.outer, tagName, { debug, startIndex: 1 });
+      if (debug) console.log("subTags.length:", subTags.length);
       if (subTags.length > 0) {
         subTags.forEach(subTag => {
             subTag.start += tag.start,

@@ -1,6 +1,6 @@
 {
   "name": "xml-utils",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Parse XML without Blowing Up Your Bundle Size",
   "main": "src/index.js",
   "scripts": {
@@ -12,6 +12,8 @@
     "url": "git+https://github.com/DanielJDufour/xml-utils.git"
   },
   "keywords": [
+    "fast",
+    "mrf",
     "xml",
     "tag",
     "lite",

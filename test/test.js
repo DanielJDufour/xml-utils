@@ -8,6 +8,7 @@ const findTagsByPath = require('../src/find-tags-by-path.js');
 const getAttribute = require('../src/get-attribute.js');
 
 const iso = readFileSync('test/data/iso.xml', 'utf-8');
+const mrf = readFileSync('test/data/m_3008501_ne_16_1_20171018.mrf', 'utf-8');
 const tiffAux = readFileSync('test/data/rgb_raster.tif.aux.xml', 'utf-8');
 
 describe('indexOfMatch', function() {
@@ -40,6 +41,11 @@ describe('findTagByPath', function() {
 
     const longitude = Number(findTagByPath(iso, ["gmd:westBoundLongitude", "gco:Decimal"]).inner);
     expect(longitude).to.equal(10.2822923743907);
+  });
+  it("should get raster size from a .mrf file", function() {
+    const rasterSize = findTagByPath(mrf, ['MRF_META', 'Raster', 'Size'], { debug: false });
+    expect(rasterSize.outer).to.equal('<Size x="6638" y="7587" c="4" />');
+    expect(rasterSize.inner).to.equal(null);
   });
 });
 

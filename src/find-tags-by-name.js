@@ -9,6 +9,7 @@ function findTagsByName(xml, tagName, options) {
     startIndex = tag.end;
     tags.push(tag);
   }
+  if (debug) console.log("findTagsByName found", tags.length, "tags");
   return tags;
 }
 
