@@ -1,5 +1,5 @@
 function getAttribute(tag, attributeName, options) {
-  const debug = options && options.debug || false;
+  const debug = (options && options.debug) || false;
   if (debug) console.log("getting " + attributeName + " in " + tag);
 
   const xml = typeof tag === "object" ? tag.outer : tag;

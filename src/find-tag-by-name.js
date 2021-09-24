@@ -1,9 +1,9 @@
-const indexOfMatch = require('./index-of-match.js');
+const indexOfMatch = require("./index-of-match.js");
 
 function findTagByName(xml, tagName, options) {
-  const debug = options && options.debug || false;
+  const debug = (options && options.debug) || false;
 
-  const startIndex = options && options.startIndex || 0;
+  const startIndex = (options && options.startIndex) || 0;
 
   if (debug) console.log("starting findTagByName with", tagName, " and ", options);
 
@@ -12,11 +12,11 @@ function findTagByName(xml, tagName, options) {
   if (start === -1) return undefined;
 
   const afterStart = xml.slice(start + tagName.length);
-  let relativeEnd = indexOfMatch(afterStart, "[ \/]" + tagName + ">", 0);
+  let relativeEnd = indexOfMatch(afterStart, "[ /]" + tagName + ">", 0);
   const selfClosing = relativeEnd === -1;
 
   if (selfClosing) {
-    relativeEnd = indexOfMatch(afterStart, "[ \/]>", 0);
+    relativeEnd = indexOfMatch(afterStart, "[ /]>", 0);
   }
 
   const end = start + tagName.length + relativeEnd + 1 + (selfClosing ? 0 : tagName.length) + 1;
