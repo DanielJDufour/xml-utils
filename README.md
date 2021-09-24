@@ -13,13 +13,24 @@ npm install xml-utils
 
 # usage
 
+## the simple tag object
+XML tags are represented by a simple object with an outer and inner property. 
+The "outer" property is the text string that completely encompasses the tag, equivalent to an HTML element's "outerHTML".
+The "inner" property represents the sub-parts of the tag.  It is similar to an HTML element's "textContent".
+Here's an example of a tag:
+```javascript
+{
+  outer: "<MDI key="INTERLEAVE">PIXEL</MDI>",
+  inner: "PIXEL"
+}
+```
+
 ## get attribute
 ```javascript
 const getAttribute = require("xml-utils/get-attribute");
 const xml = `<MDI key="INTERLEAVE">PIXEL</MDI>`;
 const key = getAttribute(xml, "key");
-console.log(key);
-// INTERLEAVE
+// key is "INTERLEAVE"
 ```
 
 ## find one tag by name
@@ -28,9 +39,8 @@ const findTagByName = require("xml-utils/find-tag-by-name");
 
 const xml = `<Metadata domain="IMAGE_STRUCTURE"><MDI key="INTERLEAVE">PIXEL</MDI></Metadata>`
 const tag = findTagByName(xml, "MDI");
-console.log(tag);
 ```
-will output:
+tag is
 ```javascript
 {
   outer: "<MDI key="INTERLEAVE">PIXEL</MDI>",
