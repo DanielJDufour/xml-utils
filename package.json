@@ -1,6 +1,6 @@
 {
   "name": "xml-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Parse XML without Blowing Up Your Bundle Size",
   "main": "index.js",
   "files": [
