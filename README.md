@@ -60,7 +60,7 @@ const xml = `
     </Metadata>
 `;
 const tags = findTagsByName(xml, "MDI");
-// will output an array of tags
+// tags is an array of tags
 ```
 ## find one tag by path
 ```javascript
@@ -88,7 +88,7 @@ To get an array of tags that follow a path:
 ```javascript
 const findTagsByPath = require("xml-utils/find-tags-by-path");
 const tags = findTagByPath(xml, ["Metadata", "MDI"]);
-// will output an array of tags
+// tags is an array of tags
 ```
 
 
