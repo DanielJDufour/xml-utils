@@ -1,7 +1,7 @@
 # xml-utils
-> The lightest XML parsing library.
+> The lightest XML parsing library
 
-# features
+## features
 - Only import the functions that you need
 - No external dependencies
 - Runs the same in NodeJS and Browser
