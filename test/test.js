@@ -1,11 +1,11 @@
 const test = require("flug");
 const { readFileSync } = require("fs");
-const indexOfMatch = require("../src/index-of-match.js");
-const findTagByName = require("../src/find-tag-by-name.js");
-const findTagsByName = require("../src/find-tags-by-name.js");
-const findTagByPath = require("../src/find-tag-by-path.js");
-const findTagsByPath = require("../src/find-tags-by-path.js");
-const getAttribute = require("../src/get-attribute.js");
+const indexOfMatch = require("../index-of-match.js");
+const findTagByName = require("../find-tag-by-name.js");
+const findTagsByName = require("../find-tags-by-name.js");
+const findTagByPath = require("../find-tag-by-path.js");
+const findTagsByPath = require("../find-tags-by-path.js");
+const getAttribute = require("../get-attribute.js");
 
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");

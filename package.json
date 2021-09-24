@@ -2,7 +2,7 @@
   "name": "xml-utils",
   "version": "0.2.0",
   "description": "Parse XML without Blowing Up Your Bundle Size",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "format": "npx prettier --arrow-parens=avoid --print-width=120 --trailing-comma=none --write */*.js",
     "setup": "cd test/data && bash setup.sh",
