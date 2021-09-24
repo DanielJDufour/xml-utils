@@ -1,8 +1,13 @@
 # xml-utils
-The lightest XML parsing library.  Only import the functions that you need.
+> The lightest XML parsing library.
+
+# features
+- Only import the functions that you need
+- No external dependencies
+- Runs the same in NodeJS and Browser
 
 ## install
-```
+```bash
 npm install xml-utils
 ```
 
