@@ -3,6 +3,16 @@
   "version": "0.2.0",
   "description": "Parse XML without Blowing Up Your Bundle Size",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "find-tag-by-name.js",
+    "find-tag-by-path.js",
+    "find-tags-by-name.js",
+    "find-tags-by-path.js",
+    "get-attribute.js",
+    "index-of-match.js",
+    "index.js"
+  ],
   "scripts": {
     "format": "npx prettier --arrow-parens=avoid --print-width=120 --trailing-comma=none --write *.js */*.js",
     "setup": "cd test/data && bash setup.sh",
