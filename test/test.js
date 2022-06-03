@@ -1,6 +1,7 @@
 const test = require("flug");
 const { readFileSync } = require("fs");
 const indexOfMatch = require("../index-of-match.js");
+const indexOfMatchEnd = require("../index-of-match-end.js");
 const findTagByName = require("../find-tag-by-name.js");
 const findTagsByName = require("../find-tags-by-name.js");
 const findTagByPath = require("../find-tag-by-path.js");
@@ -17,6 +18,12 @@ test("should get gmd:code and avoid gmd:codeSpace", ({ eq }) => {
 
   const tag = findTagByName(iso, "gmd:code", { startIndex: index + 1 });
   eq(tag, undefined);
+});
+
+test("indexOfMatchEnd", ({ eq }) => {
+  const xml = `<items><item><item></items>`;
+  const index = indexOfMatchEnd(xml, "[ /]items>", 0);
+  eq(index, xml.length - 1);
 });
 
 test("should find all the urls in iso.xml", ({ eq }) => {
@@ -70,4 +77,16 @@ test("should get raster width from a .mrf file", ({ eq }) => {
   eq(getAttribute(rasterSize, "x"), "6638");
   eq(getAttribute(rasterSize, "y"), "7587");
   eq(getAttribute(rasterSize, "c"), "4");
+});
+
+test("should get first tag", ({ eq }) => {
+  const xml = `<fields> <field datatype="text" name="L101"/> <field datatype="text" name="L101_1"/> <field datatype="text" name="P102"/> <field datatype="text" name="P102_1"> <source></source> <param></param> </field> <field datatype="text" name="P103"></field> </fields>`;
+  const tag = findTagByName(xml, "field", { debug: false });
+  eq(tag.outer, `<field datatype="text" name="L101"/>`);
+});
+
+test("should get all tags (self-closing and not)", ({ eq }) => {
+  const xml = `<fields> <field datatype="text" name="L101"/> <field datatype="text" name="L101_1"/> <field datatype="text" name="P102"/> <field datatype="text" name="P102_1"> <source></source> <param></param> </field> <field datatype="text" name="P103"></field> </fields>`;
+  const tags = findTagsByName(xml, "field", { debug: false });
+  eq(tags.length, 5);
 });
