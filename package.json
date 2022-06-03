@@ -11,6 +11,7 @@
     "find-tags-by-path.js",
     "get-attribute.js",
     "index-of-match.js",
+    "index-of-match-end.js",
     "index.js"
   ],
   "scripts": {
