@@ -39,6 +39,6 @@
   },
   "homepage": "https://github.com/DanielJDufour/xml-utils#readme",
   "devDependencies": {
-    "flug": "^2.1.0"
+    "flug": "^2.3.1"
   }
 }
