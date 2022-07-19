@@ -14,3 +14,4 @@ function findTagsByName(xml, tagName, options) {
 }
 
 module.exports = findTagsByName;
+module.exports.default = findTagsByName;

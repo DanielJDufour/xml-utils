@@ -14,3 +14,4 @@ function getAttribute(tag, attributeName, options) {
 }
 
 module.exports = getAttribute;
+module.exports.default = getAttribute;

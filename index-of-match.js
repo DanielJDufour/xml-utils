@@ -6,3 +6,4 @@ function indexOfMatch(xml, pattern, startIndex) {
 }
 
 module.exports = indexOfMatch;
+module.exports.default = indexOfMatch;

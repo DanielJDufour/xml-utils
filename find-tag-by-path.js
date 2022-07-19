@@ -7,3 +7,4 @@ function findTagByPath(xml, path, options) {
   else return undefined;
 }
 module.exports = findTagByPath;
+module.exports.default = findTagByPath;

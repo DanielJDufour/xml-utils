@@ -6,3 +6,4 @@ function indexOfMatchEnd(xml, pattern, startIndex) {
 }
 
 module.exports = indexOfMatchEnd;
+module.exports.default = indexOfMatchEnd;

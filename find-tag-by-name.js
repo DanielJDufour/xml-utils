@@ -41,3 +41,4 @@ function findTagByName(xml, tagName, options) {
 }
 
 module.exports = findTagByName;
+module.exports.default = findTagByName;

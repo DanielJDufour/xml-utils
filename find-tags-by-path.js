@@ -30,3 +30,4 @@ function findTagsByPath(xml, path, options) {
 }
 
 module.exports = findTagsByPath;
+module.exports.default = findTagsByPath;
