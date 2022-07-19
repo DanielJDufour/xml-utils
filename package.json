@@ -11,8 +11,7 @@
     "find-tags-by-path.js",
     "get-attribute.js",
     "index-of-match.js",
-    "index-of-match-end.js",
-    "index.js"
+    "index-of-match-end.js"
   ],
   "scripts": {
     "format": "npx prettier --arrow-parens=avoid --print-width=140 --trailing-comma=none --write *.js */*.js",
