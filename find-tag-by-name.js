@@ -8,7 +8,7 @@ function findTagByName(xml, tagName, options) {
 
   if (debug) console.log("[xml-utils] starting findTagByName with", tagName, " and ", options);
 
-  const start = indexOfMatch(xml, `\<${tagName}[ \>]`, startIndex);
+  const start = indexOfMatch(xml, `\<${tagName}[ \>\/]`, startIndex);
   if (debug) console.log("[xml-utils] start:", start);
   if (start === -1) return undefined;
 

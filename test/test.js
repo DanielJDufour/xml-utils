@@ -90,3 +90,10 @@ test("should get all tags (self-closing and not)", ({ eq }) => {
   const tags = findTagsByName(xml, "field", { debug: false });
   eq(tags.length, 5);
 });
+
+test("should get self-closing with immediate close and without interior space", ({ eq }) => {
+  const xml = `<House><Kitchen/></House>`;
+  const tag = findTagByName(xml, "Kitchen");
+  eq(tag.outer, "<Kitchen/>");
+  eq(tag.inner, null);
+});
