@@ -14,6 +14,7 @@
     "index-of-match-end.js"
   ],
   "scripts": {
+    "f": "npm run format",
     "format": "npx prettier --arrow-parens=avoid --print-width=140 --trailing-comma=none --write *.js */*.js",
     "setup": "cd test/data && bash setup.sh",
     "test": "node ./test/test.js"
