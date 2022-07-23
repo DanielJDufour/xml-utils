@@ -5,6 +5,7 @@
   "main": "index.js",
   "files": [
     "index.js",
+    "count-substring.js",
     "find-tag-by-name.js",
     "find-tag-by-path.js",
     "find-tags-by-name.js",
