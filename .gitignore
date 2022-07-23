@@ -105,5 +105,5 @@ dist
 
 *.mrf
 *.xml
-*.bak
+*.bak*
 *pnpm*
