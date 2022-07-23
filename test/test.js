@@ -1,5 +1,6 @@
 const test = require("flug");
 const { readFileSync } = require("fs");
+const countSubstring = require("../count-substring.js");
 const indexOfMatch = require("../index-of-match.js");
 const indexOfMatchEnd = require("../index-of-match-end.js");
 const findTagByName = require("../find-tag-by-name.js");
@@ -11,6 +12,15 @@ const getAttribute = require("../get-attribute.js");
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");
 const tiffAux = readFileSync("test/data/rgb_raster.tif.aux.xml", "utf-8");
+
+const nested = "<Thing><Thing attr=1></Thing><Thing attr=2></Thing></Thing>";
+
+test("count substring", ({ eq }) => {
+  eq(countSubstring(nested, "<namespace:name"), 0);
+  eq(countSubstring(nested, "<Test"), 0);
+  eq(countSubstring(nested, "<Thing"), 3);
+  eq(countSubstring(nested, "/Thing>"), 3);
+});
 
 test("should get gmd:code and avoid gmd:codeSpace", ({ eq }) => {
   const index = indexOfMatch(iso, `\<gmd:code[ \>]`, 0);
@@ -83,6 +93,9 @@ test("should get first tag", ({ eq }) => {
   const xml = `<fields> <field datatype="text" name="L101"/> <field datatype="text" name="L101_1"/> <field datatype="text" name="P102"/> <field datatype="text" name="P102_1"> <source></source> <param></param> </field> <field datatype="text" name="P103"></field> </fields>`;
   const tag = findTagByName(xml, "field", { debug: false });
   eq(tag.outer, `<field datatype="text" name="L101"/>`);
+
+  const tag2 = findTagByName(xml, "field", { debug: false, nested: false });
+  eq(tag2.outer, `<field datatype="text" name="L101"/>`);
 });
 
 test("should get all tags (self-closing and not)", ({ eq }) => {
@@ -96,4 +109,26 @@ test("should get self-closing with immediate close and without interior space", 
   const tag = findTagByName(xml, "Kitchen");
   eq(tag.outer, "<Kitchen/>");
   eq(tag.inner, null);
+});
+
+test("should handle nested tags", ({ eq }) => {
+  const xml = `<Thing><Thing sub1>A</Thing><Thing sub2>B</Thing></Thing>`;
+
+  eq(findTagByName(xml, "Thing").outer, xml);
+  eq(findTagByName(xml, "Thing").outer, xml);
+
+  eq(findTagsByName(xml, "Thing").length, 3);
+  eq(findTagsByName(xml, "Thing")[0].outer, xml);
+  eq(findTagsByName(xml, "Thing", { nested: true }).length, 3);
+  eq(findTagsByName(xml, "Thing", { nested: true })[0].outer, xml);
+  eq(findTagsByName(xml, "Thing", { nested: false }).length, 1);
+  eq(findTagsByName(xml, "Thing", { nested: false })[0].outer, xml);
+
+  eq(findTagsByPath(xml, ["Thing"]).length, 1);
+  eq(findTagsByPath(xml, ["Thing"])[0].outer, xml);
+  eq(findTagsByPath(xml, ["Thing", "Thing"]), [
+    { inner: "A", outer: "<Thing sub1>A</Thing>", start: 7, end: 28 },
+    { inner: "B", outer: "<Thing sub2>B</Thing>", start: 28, end: 49 }
+  ]);
+  eq(findTagByPath(xml, ["Thing"]).outer, xml);
 });
