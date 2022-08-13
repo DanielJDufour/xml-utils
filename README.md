@@ -5,6 +5,7 @@
 - Only import the functions that you need
 - No external dependencies
 - Runs the same in NodeJS and Browser
+- Supports TypeScript
 
 ## install
 ```bash
