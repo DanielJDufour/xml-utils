@@ -8,12 +8,25 @@ const findTagsByName = require("../find-tags-by-name.js");
 const findTagByPath = require("../find-tag-by-path.js");
 const findTagsByPath = require("../find-tags-by-path.js");
 const getAttribute = require("../get-attribute.js");
+const removeComments = require("../remove-comments.js");
 
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");
 const tiffAux = readFileSync("test/data/rgb_raster.tif.aux.xml", "utf-8");
 
 const nested = "<Thing><Thing attr=1></Thing><Thing attr=2></Thing></Thing>";
+
+const commented = `<Thing>
+<!--
+  <Thing attr=1></Thing>
+-->
+<Thing attr=2></Thing>
+</Thing>`;
+
+test("removing comments", ({ eq }) => {
+  eq(removeComments(commented), "<Thing>\n\n<Thing attr=2></Thing>\n</Thing>");
+  eq(removeComments("<A><!--<B/>--><!--<C/>--></A>"), "<A></A>");
+});
 
 test("count substring", ({ eq }) => {
   eq(countSubstring(nested, "<namespace:name"), 0);

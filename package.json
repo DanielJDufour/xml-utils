@@ -14,7 +14,8 @@
     "find-tags-by-path.js",
     "get-attribute.js",
     "index-of-match.js",
-    "index-of-match-end.js"
+    "index-of-match-end.js",
+    "remove-comments.js"
   ],
   "scripts": {
     "f": "npm run format",

@@ -92,6 +92,17 @@ const tags = findTagByPath(xml, ["Metadata", "MDI"]);
 // tags is an array of tags
 ```
 
+## remove comments
+```javascript
+const removeComments = require("xml-utils/remove-comments");
+const xml = `<list>
+  <!--<A/>-->
+  <B/>
+</list>`;
+removeComments(xml);
+"<list>\n  \n<B/><list>";
+```
+
 
 ## setup
 download test files with:

@@ -1,12 +1,10 @@
 import test from "flug";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { findTagByName, findTagsByName, findTagByPath, findTagsByPath, getAttribute } from "../index";
 
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");
 const tiffAux = readFileSync("test/data/rgb_raster.tif.aux.xml", "utf-8");
-
-const nested = "<Thing><Thing attr=1></Thing><Thing attr=2></Thing></Thing>";
 
 test("should find all the urls in iso.xml", ({ eq }) => {
   const urls = findTagsByName(iso, "gmd:URL");
