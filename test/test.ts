@@ -1,4 +1,5 @@
 import test from "flug";
+// @ts-ignore
 import { readFileSync } from "node:fs";
 import { findTagByName, findTagsByName, findTagByPath, findTagsByPath, getAttribute } from "../index";
 
