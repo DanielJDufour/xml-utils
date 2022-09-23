@@ -23,7 +23,7 @@
     "f": "npm run format",
     "format": "npx prettier --arrow-parens=avoid --print-width=140 --trailing-comma=none --write *.js */*.js */*.mjs */*.ts",
     "setup": "cd test/data && bash setup.sh",
-    "test": "npm run test:js && npm run test:ts && npm run test:tsc",
+    "test": "npm run test:js && npm run test:ts && npm run test:tsc && npm run test:esm",
     "test:js": "node ./test/test.js",
     "test:esm": "node ./test/test.mjs",
     "test:ts": "npx ts-node ./test/test.ts",
