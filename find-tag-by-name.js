@@ -29,8 +29,8 @@ function findTagByName(xml, tagName, options) {
       let closings = 0;
       while ((relativeEnd = indexOfMatchEnd(afterStart, "[ /]" + tagName + ">", startIndex)) !== -1) {
         const clip = afterStart.substring(startIndex, relativeEnd + 1);
-        openings += countSubstring(clip, "<" + tagName);
-        closings += countSubstring(clip, "/" + tagName + ">");
+        openings += countSubstring(clip, "<" + tagName + "[ \n\t>]");
+        closings += countSubstring(clip, "</" + tagName + ">");
         // we can't have more openings than closings
         if (closings >= openings) break;
         startIndex = relativeEnd;
