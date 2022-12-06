@@ -6,8 +6,20 @@
   "module": "index.mjs",
   "types": "index.d.ts",
   "exports": {
-    "require": "./index.js",
-    "import": "./index.mjs"
+    ".": {
+      "require": "./index.js",
+      "import": "./index.mjs"
+    },
+    "./index": {
+      "require": "./index.js",
+      "import": "./index.mjs"
+    },
+    "./find-tag-by-name": "./find-tag-by-name.js",
+    "./find-tag-by-path": "./find-tag-by-path.js",
+    "./find-tags-by-name": "./find-tags-by-name.js",
+    "./find-tags-by-path": "./find-tags-by-path.js",
+    "./get-attribute": "./get-attribute.js",
+    "./remove-comments": "./remove-comments.js"
   },
   "files": [
     "index.d.ts",
