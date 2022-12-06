@@ -14,12 +14,20 @@
       "require": "./index.js",
       "import": "./index.mjs"
     },
+    "./index.js": "./index.js",
+    "./index.mjs":"./index.mjs",
     "./find-tag-by-name": "./find-tag-by-name.js",
+    "./find-tag-by-name.js": "./find-tag-by-name.js",
     "./find-tag-by-path": "./find-tag-by-path.js",
+    "./find-tag-by-path.js": "./find-tag-by-path.js",
     "./find-tags-by-name": "./find-tags-by-name.js",
+    "./find-tags-by-name.js": "./find-tags-by-name.js",
     "./find-tags-by-path": "./find-tags-by-path.js",
+    "./find-tags-by-path.js": "./find-tags-by-path.js",
     "./get-attribute": "./get-attribute.js",
-    "./remove-comments": "./remove-comments.js"
+    "./get-attribute.js": "./get-attribute.js",
+    "./remove-comments": "./remove-comments.js",
+    "./remove-comments.js": "./remove-comments.js"
   },
   "files": [
     "index.d.ts",
