@@ -1,15 +1,18 @@
 function getAttribute(tag, attributeName, options) {
   const debug = (options && options.debug) || false;
-  if (debug) console.log("getting " + attributeName + " in " + tag);
+  if (debug) console.log("[xml-utils] getting " + attributeName + " in " + tag);
 
   const xml = typeof tag === "object" ? tag.outer : tag;
 
+  // only search for attributes in the opening tag
+  const opening = xml.slice(0, xml.indexOf(">") + 1);
+
   const pattern = `${attributeName}\\="\([^"]*\)"`;
-  if (debug) console.log("pattern:", pattern);
+  if (debug) console.log("[xml-utils] pattern:", pattern);
 
   const re = new RegExp(pattern);
-  const match = re.exec(xml);
-  if (debug) console.log("match:", match);
+  const match = re.exec(opening);
+  if (debug) console.log("[xml-utils] match:", match);
   if (match) return match[1];
 }
 
