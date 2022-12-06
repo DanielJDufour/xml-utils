@@ -13,6 +13,10 @@ const removeComments = require("../remove-comments.js");
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");
 const tiffAux = readFileSync("test/data/rgb_raster.tif.aux.xml", "utf-8");
+// tmx example from https://en.wikipedia.org/wiki/Translation_Memory_eXchange
+const tmx = readFileSync("test/data/tmx.xml", "utf-8");
+// svg example from https://en.wikipedia.org/wiki/SVG
+const svg = readFileSync("test/data/example.svg", "utf-8");
 
 const nested = "<Thing><Thing attr=1></Thing><Thing attr=2></Thing></Thing>";
 
@@ -22,6 +26,52 @@ const commented = `<Thing>
 -->
 <Thing attr=2></Thing>
 </Thing>`;
+
+const multiline = `<div
+id="container"
+>
+  <div
+    id="inside"
+    data-foo="bar"
+  </div>
+</div>
+`;
+
+test("tmx", ({ eq }) => {
+  eq(getAttribute(tmx, "version"), "1.4");
+  const header = findTagByName(tmx, "header");
+  eq(getAttribute(header, "srclang"), "en");
+  eq(getAttribute(header, "o-tmf"), "ABCTransMem");
+  const tu = findTagByName(tmx, "tu", { debug: false });
+  eq(
+    tu.inner.trim(),
+    '<tuv xml:lang="en">\n        <seg>Hello world!</seg>\n      </tuv>\n      <tuv xml:lang="fr">\n        <seg>Bonjour tout le monde!</seg>\n      </tuv>'
+  );
+  const tuvs = findTagsByName(tmx, "tuv");
+  eq(tuvs.length, 2);
+});
+
+test("svg", ({ eq }) => {
+  const tag = findTagByName(svg, "svg");
+  eq(getAttribute(tag, "height"), "391");
+  eq(getAttribute(tag, "width"), "391");
+  eq(getAttribute(tag, "viewBox"), "-70.5 -70.5 391 391");
+  eq(getAttribute(tag, "xmlns:xlink"), "http://www.w3.org/1999/xlink");
+  eq(getAttribute(findTagByPath(svg, ["g"]), "opacity"), "0.8");
+  eq(getAttribute(findTagByName(svg, "rect"), "fill"), "#fff");
+  const rect = findTagByPath(svg, ["g", "rect"]).outer;
+  eq(getAttribute(rect, "x"), "25");
+  eq(getAttribute(rect, "stroke-width"), "4");
+});
+
+test("support multi-line tags", ({ eq }) => {
+  const container = findTagByName(multiline, "div");
+  eq(container.outer, `<div\nid="container"\n>\n  <div\n    id="inside"\n    data-foo="bar"\n  </div>\n</div>`);
+  eq(container.inner, `\n  <div\n    id="inside"\n    data-foo="bar"\n  </div>\n`);
+  eq(getAttribute(container.outer, "id"), "container");
+  eq(getAttribute(container.outer, "data-foo"), undefined);
+  eq(getAttribute(container.inner.trim(), "data-foo", { debug: false }), "bar");
+});
 
 test("removing comments", ({ eq }) => {
   eq(removeComments(commented), "<Thing>\n\n<Thing attr=2></Thing>\n</Thing>");
