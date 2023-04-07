@@ -195,3 +195,7 @@ test("should handle nested tags", ({ eq }) => {
   ]);
   eq(findTagByPath(xml, ["Thing"]).outer, xml);
 });
+
+test("getAttribute with single quotes", ({ eq }) => {
+  eq(getAttribute("<link href='https://example.org'/>", "href"), "https://example.org");
+});
