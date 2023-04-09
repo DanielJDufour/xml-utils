@@ -9,6 +9,7 @@ const findTagByPath = require("../find-tag-by-path.js");
 const findTagsByPath = require("../find-tags-by-path.js");
 const getAttribute = require("../get-attribute.js");
 const removeComments = require("../remove-comments.js");
+const removeTagsByName = require("../remove-tags-by-name.js");
 
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");
@@ -198,4 +199,14 @@ test("should handle nested tags", ({ eq }) => {
 
 test("getAttribute with single quotes", ({ eq }) => {
   eq(getAttribute("<link href='https://example.org'/>", "href"), "https://example.org");
+});
+
+test("removeTagsByName", ({ eq }) => {
+  const xml = `
+  <ul>
+    <li>A</li>
+    <li>B</li>
+  </ul>
+  `;
+  eq(removeTagsByName(xml, "li").trim(), "<ul>\n    \n    \n  </ul>");
 });

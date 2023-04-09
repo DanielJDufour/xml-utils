@@ -1,7 +1,7 @@
 import test from "flug";
 // @ts-ignore
 import { readFileSync } from "node:fs";
-import { findTagByName, findTagsByName, findTagByPath, findTagsByPath, getAttribute } from "../index";
+import { findTagByName, findTagsByName, findTagByPath, findTagsByPath, getAttribute, removeTagsByName } from "../index";
 
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");
@@ -102,4 +102,8 @@ test("should handle nested tags", ({ eq }) => {
     { inner: "B", outer: "<Thing sub2>B</Thing>", start: 28, end: 49 }
   ]);
   eq(findTagByPath(xml, ["Thing"])!.outer, xml);
+});
+
+test("removeTagsByName", ({ eq }) => {
+  eq(removeTagsByName("<ul><li>A</li><li>B</li></ul>", "li"), "<ul></ul>");
 });

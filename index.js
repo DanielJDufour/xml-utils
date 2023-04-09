@@ -1,9 +1,10 @@
-const getAttribute = require("./get-attribute");
-const findTagByName = require("./find-tag-by-name");
-const findTagsByName = require("./find-tags-by-name");
-const findTagByPath = require("./find-tag-by-path");
-const findTagsByPath = require("./find-tags-by-path");
-const removeComments = require("./remove-comments");
+const getAttribute = require("./get-attribute.js");
+const findTagByName = require("./find-tag-by-name.js");
+const findTagsByName = require("./find-tags-by-name.js");
+const findTagByPath = require("./find-tag-by-path.js");
+const findTagsByPath = require("./find-tags-by-path.js");
+const removeComments = require("./remove-comments.js");
+const removeTagsByName = require("./remove-tags-by-name.js");
 
 module.exports = {
   getAttribute,
@@ -11,5 +12,6 @@ module.exports = {
   findTagsByName,
   findTagByPath,
   findTagsByPath,
-  removeComments
+  removeComments,
+  removeTagsByName
 };

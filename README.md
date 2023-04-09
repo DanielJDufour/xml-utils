@@ -28,7 +28,7 @@ Here's an example of a tag:
 
 ## get attribute
 ```javascript
-const getAttribute = require("xml-utils/get-attribute");
+const getAttribute = require("xml-utils/get-attribute.js");
 const xml = `<MDI key="INTERLEAVE">PIXEL</MDI>`;
 const key = getAttribute(xml, "key");
 // key is "INTERLEAVE"
@@ -36,7 +36,7 @@ const key = getAttribute(xml, "key");
 
 ## find one tag by name
 ```javascript
-const findTagByName = require("xml-utils/find-tag-by-name");
+const findTagByName = require("xml-utils/find-tag-by-name.js");
 
 const xml = `<Metadata domain="IMAGE_STRUCTURE"><MDI key="INTERLEAVE">PIXEL</MDI></Metadata>`
 const tag = findTagByName(xml, "MDI");
@@ -50,7 +50,7 @@ tag is
 ```
 ## find multiple tags with the same name
 ```javascript
-const findTagsByName = require("xml-utils/find-tags-by-name");
+const findTagsByName = require("xml-utils/find-tags-by-name.js");
 const xml = `
     <Metadata>
       <MDI key="SourceBandIndex">1</MDI>
@@ -65,7 +65,7 @@ const tags = findTagsByName(xml, "MDI");
 ```
 ## find one tag by path
 ```javascript
-const findTagByPath = require("xml-utils/find-tag-by-path");
+const findTagByPath = require("xml-utils/find-tag-by-path.js");
 const xml = `
        <gmd:referenceSystemIdentifier>
          <gmd:RS_Identifier>
@@ -87,20 +87,29 @@ const tag = findTagByPath(xml, ["gmd:RS_Identifier", "gmd:code", "gco:CharacterS
 ## find multiple tags by path
 To get an array of tags that follow a path:
 ```javascript
-const findTagsByPath = require("xml-utils/find-tags-by-path");
+const findTagsByPath = require("xml-utils/find-tags-by-path.js");
 const tags = findTagByPath(xml, ["Metadata", "MDI"]);
 // tags is an array of tags
 ```
 
 ## remove comments
 ```javascript
-const removeComments = require("xml-utils/remove-comments");
+const removeComments = require("xml-utils/remove-comments.js");
 const xml = `<list>
   <!--<A/>-->
   <B/>
 </list>`;
 removeComments(xml);
 "<list>\n  \n<B/><list>";
+```
+
+## remove tags by name
+```js
+const removeTagsByName = require("xml-utils/remove-tags-by-name.js");
+
+const xml = "<ul><li>A</li><li>B</li></ul>";
+removeTagsByName(xml, "li")
+"<ul></ul>"
 ```
 
 

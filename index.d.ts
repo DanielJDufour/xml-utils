@@ -25,3 +25,5 @@ export function findTagByPath(
 ): Tag | undefined;
 
 export function getAttribute(tag: string | Tag, attributeName: string, options?: { debug?: boolean } ): string;
+
+export function removeTagsByName(xml: string, tagName: string, options?: { debug?: boolean }): string;

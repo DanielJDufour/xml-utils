@@ -27,7 +27,9 @@
     "./get-attribute": "./get-attribute.js",
     "./get-attribute.js": "./get-attribute.js",
     "./remove-comments": "./remove-comments.js",
-    "./remove-comments.js": "./remove-comments.js"
+    "./remove-comments.js": "./remove-comments.js",
+    "./remove-tags-by-name": "./remove-tags-by-name",
+    "./remove-tags-by-name.js": "./remove-tags-by-name.js"
   },
   "files": [
     "index.d.ts",
