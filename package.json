@@ -43,7 +43,8 @@
     "get-attribute.js",
     "index-of-match.js",
     "index-of-match-end.js",
-    "remove-comments.js"
+    "remove-comments.js",
+    "remove-tags-by-name.js"
   ],
   "scripts": {
     "f": "npm run format",
