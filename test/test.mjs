@@ -1,7 +1,7 @@
 import test from "flug";
 import { readFileSync } from "node:fs";
 import { findTagByName, findTagsByName, findTagByPath, findTagsByPath, getAttribute } from "../index.mjs";
-import { default as findTagsByNameDirect } from "../find-tags-by-name.js";
+import { default as findTagsByNameDirect } from "../find-tags-by-name.mjs";
 
 const iso = readFileSync("test/data/iso.xml", "utf-8");
 const mrf = readFileSync("test/data/m_3008501_ne_16_1_20171018.mrf", "utf-8");

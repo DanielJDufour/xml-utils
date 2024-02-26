@@ -44,11 +44,21 @@
     "index-of-match.js",
     "index-of-match-end.js",
     "remove-comments.js",
-    "remove-tags-by-name.js"
+    "remove-tags-by-name.js",
+    "count-substring.mjs",
+    "find-tag-by-name.mjs",
+    "find-tag-by-path.mjs",
+    "find-tags-by-name.mjs",
+    "find-tags-by-path.mjs",
+    "get-attribute.mjs",
+    "index-of-match.mjs",
+    "index-of-match-end.mjs",
+    "remove-comments.mjs",
+    "remove-tags-by-name.mjs"
   ],
   "scripts": {
     "f": "npm run format",
-    "format": "npx prettier --arrow-parens=avoid --print-width=140 --trailing-comma=none --write *.js */*.js */*.mjs */*.ts",
+    "format": "npx prettier --arrow-parens=avoid --print-width=140 --trailing-comma=none --write *.js *.mjs */*.js */*.mjs */*.ts",
     "setup": "cd test/data && bash setup.sh",
     "test": "npm run test:js && npm run test:ts && npm run test:tsc && npm run test:esm",
     "test:js": "node ./test/test.js",
