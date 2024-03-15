@@ -93,7 +93,7 @@
   },
   "homepage": "https://github.com/DanielJDufour/xml-utils#readme",
   "devDependencies": {
-    "flug": "^2.6.0",
-    "typescript": "^5.0.4"
+    "flug": "^2.7.2",
+    "typescript": "^5.4.2"
   }
 }
