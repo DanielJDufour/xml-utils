@@ -107,3 +107,11 @@ test("should handle nested tags", ({ eq }) => {
 test("removeTagsByName", ({ eq }) => {
   eq(removeTagsByName("<ul><li>A</li><li>B</li></ul>", "li"), "<ul></ul>");
 });
+
+test("check immutability of findTagsByPath", ({ eq }) => {
+  const path = ["gmd:RS_Identifier", "gmd:code"];
+  const tags = findTagsByPath(iso, path);
+  eq(tags.length, 1);
+  eq(tags[0].inner === "", false);
+  eq(path.length, 2);
+});

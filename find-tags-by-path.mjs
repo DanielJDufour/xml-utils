@@ -3,7 +3,9 @@ import findTagsByName from "./find-tags-by-name.mjs";
 export default function findTagsByPath(xml, path, options) {
   const debug = (options && options.debug) || false;
   const returnOnFirst = (options && options.returnOnFirst) || false;
-  let tags = findTagsByName(xml, path.shift(), { debug, nested: false });
+  const path0 = path[0];
+  path = path.slice(1);
+  let tags = findTagsByName(xml, path0, { debug, nested: false });
   if (debug) console.log("first tags are:", tags);
   for (let pathIndex = 0; pathIndex < path.length; pathIndex++) {
     const tagName = path[pathIndex];

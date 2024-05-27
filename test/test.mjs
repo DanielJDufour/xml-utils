@@ -109,3 +109,11 @@ test("should handle nested tags", ({ eq }) => {
   ]);
   eq(findTagByPath(xml, ["Thing"]).outer, xml);
 });
+
+test("check immutability of findTagsByPath", ({ eq }) => {
+  const path = ["gmd:RS_Identifier", "gmd:code"];
+  const tags = findTagsByPath(iso, path);
+  eq(tags.length, 1);
+  eq(tags[0].inner === "", false);
+  eq(path.length, 2);
+});
