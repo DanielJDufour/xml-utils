@@ -109,9 +109,57 @@ test("removeTagsByName", ({ eq }) => {
 });
 
 test("check immutability of findTagsByPath", ({ eq }) => {
-  const path = ["gmd:RS_Identifier", "gmd:code"];
+  const path = ["gmd:RS_Identifier", "gmd:code"] as const;
   const tags = findTagsByPath(iso, path);
   eq(tags.length, 1);
   eq(tags[0].inner === "", false);
   eq(path.length, 2);
+});
+
+test("simple check findTagsByPath with index", ({ eq }) => {
+  const xml = "<tag>A</tag><tag>B</tag><tag>C</tag><tag>D</tag>";
+  const tags = findTagsByPath(xml, [{ name: "tag", index: 2 }]);
+  eq(tags, [{ outer: "<tag>C</tag>", inner: "C", start: 24, end: 36 }]);
+});
+
+test("findTagsByPath with larger source", ({ eq }) => {
+  const tags = findTagsByPath(iso, [
+    "gmd:MD_DigitalTransferOptions",
+    { name: "gmd:onLine", index: 10 },
+    "gmd:CI_OnlineResource",
+    "gmd:description",
+    "gco:CharacterString"
+  ]);
+  eq(tags, [
+    {
+      outer: "<gco:CharacterString>Veneto Atlas of artificial night sky brightness - GRID (ArcGrid Format)</gco:CharacterString>",
+      inner: "Veneto Atlas of artificial night sky brightness - GRID (ArcGrid Format)",
+      start: 20934,
+      end: 21048
+    }
+  ]);
+});
+
+test("check findTagsByPath with index (multi-level)", ({ eq }) => {
+  const xml = `
+  <outer>
+    <pair>
+      <tag>A</tag>
+      <tag>B</tag>
+    </pair>
+    <pair>
+      <tag>C</tag>
+      <tag>D</tag>
+    </pair>
+  </outer>`;
+
+  eq(findTagsByPath(xml, [{ name: "tag", index: 2 }]), [{ inner: "C", outer: "<tag>C</tag>", start: 89, end: 101 }]);
+
+  eq(findTagsByPath(xml, ["outer", { name: "pair", index: 1 }, { name: "tag", index: 0 }]), [
+    { inner: "C", outer: "<tag>C</tag>", start: 89, end: 101 }
+  ]);
+
+  eq(findTagsByPath(xml, ["outer", { name: "pair", index: 1 }, { name: "tag", index: 1 }]), [
+    { inner: "D", outer: "<tag>D</tag>", start: 108, end: 120 }
+  ]);
 });

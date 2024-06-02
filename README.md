@@ -88,8 +88,15 @@ const tag = findTagByPath(xml, ["gmd:RS_Identifier", "gmd:code", "gco:CharacterS
 To get an array of tags that follow a path:
 ```javascript
 const findTagsByPath = require("xml-utils/find-tags-by-path.js");
-const tags = findTagByPath(xml, ["Metadata", "MDI"]);
+const tags = findTagsByPath(xml, ["Metadata", "MDI"]);
 // tags is an array of tags
+
+// find description for 10th tag in list
+const tags = findTagsByPath(iso, [
+  { name: "gmd:onLine", index: 9 }, // using zero-based index
+  "gmd:description",
+  "gco:CharacterString"
+]);
 ```
 
 ## remove comments
