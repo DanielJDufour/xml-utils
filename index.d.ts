@@ -1,5 +1,6 @@
 export type Tag = { inner: null | string, outer: string };
 export type Step = { name: string, index?: number | undefined | null };
+export type Path = Array<string | Step> | ReadonlyArray<string | Step>;
 
 export function findTagByName(
   xml: string,
@@ -15,13 +16,13 @@ export function findTagsByName(
 
 export function findTagsByPath(
   xml: string,
-  path: Array<string | Step> | ReadonlyArray<string | Step>,
+  path: Path,
   options?: { debug?: boolean, returnOnFirst?: boolean }
 ): Tag[];
 
 export function findTagByPath(
   xml: string,
-  path: string[],
+  path: Path,
   options?: { debug?: boolean }
 ): Tag | undefined;
 
