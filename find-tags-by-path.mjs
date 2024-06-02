@@ -9,7 +9,13 @@ export default function findTagsByPath(xml, path, options) {
 
   const path0 = typeof path[0] === "string" ? { name: path[0] } : path[0];
   let tags = findTagsByName(xml, path0.name, { debug, nested: false });
-  if (typeof path0.index === "number") tags = [tags[path0.index]];
+  if (typeof tags !== "undefined" && typeof path0.index === "number") {
+    if (typeof tags[path0.index] === "undefined") {
+      tags = [];
+    } else {
+      tags = [tags[path0.index]];
+    }
+  }
   if (debug) console.log("first tags are:", tags);
 
   path = path.slice(1);
@@ -35,7 +41,13 @@ export default function findTagsByPath(xml, path, options) {
       }
     }
     tags = allSubTags;
-    if (typeof part.index === "number") tags = [tags[part.index]];
+    if (typeof part.index === "number") {
+      if (typeof tags[part.index] === "undefined") {
+        tags = [];
+      } else {
+        tags = [tags[part.index]];
+      }
+    }
   }
   return tags;
 }
